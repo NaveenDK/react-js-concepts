@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+
 import Person from './Person/Person';
 
 class App extends Component {
@@ -41,13 +42,25 @@ nameChangedHandler = (event)=>{
 
 
   render() {
+  
+     const style={
+       backgroundColor:'white',
+       font:'inherit',
+       border:'1px solid blue',
+       padding:'8px',
+       cursor: 'pointer'
+
+     };
+
     return (
       <div className="App">
       <h1>Hi, I'm a react App</h1>
       <p> I see me there!</p>
     {/* <button onClick={this.switchNameHandler.bind(this,'Maxmillian')}> Switch Name</button>*/  }
      { /*the below method is a bit inefficient and above bind method is recommended */}
-      <button onClick={()=>this.switchNameHandler('Maxmillian!!')}> Switch Name</button>
+      <button
+      style={style}
+      onClick={()=>this.switchNameHandler('Maxmillian!!')}> Switch Name</button>
       <Person 
       name={this.state.persons[0].name} 
       age={this.state.persons[0].age}/>
