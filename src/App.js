@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, {StyleRoot} from 'radium';
+
 import Person from './Person/Person';
 import person from './Person/Person';
 
@@ -64,10 +64,7 @@ nameChangedHandler = (event,id )=>{
                             border:'1px solid blue',
                             padding:'8px',
                             cursor: 'pointer',
-                            ':hover':{
-                              backgroundColor:'lightgreen',
-                              color:'black'
-                            }
+                            
 
                           };
 
@@ -89,10 +86,7 @@ nameChangedHandler = (event,id )=>{
 
                         )
                         style.backgroundColor= 'red';
-                        style[':hover'] = {
-                          backgroundColor: 'salmon',
-                          color:'black'
-                        }
+                      
                       }
 
                      // let classes = ['red','bold'].join(' ');
@@ -107,7 +101,7 @@ nameChangedHandler = (event,id )=>{
 
 
                           return (
-                            <StyleRoot>
+                            
                             <div className="App">
                             <h1>Hi, I'm a react App</h1>
                             <p className={classes.join(' ')}> I see me there!</p>
@@ -117,10 +111,10 @@ nameChangedHandler = (event,id )=>{
                                     style={style}
                                     onClick={this.togglePersonsHandler}> Switch Name</button>
                                     {persons}
-                          </div></StyleRoot>
+                          </div>
                             
                               );
                  }
 }
 
-export default  Radium(App);
+export default  App;
