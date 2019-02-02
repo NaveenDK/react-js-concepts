@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person';
 import person from './Person/Person';
 
@@ -50,57 +50,77 @@ nameChangedHandler = (event,id )=>{
 
 }//end of namechangedhandler
 
-togglePersonsHandler = ()=>{
- const doesShow = this.state.showPersons;
- this.setState({showPersons: !doesShow});
-}
+            togglePersonsHandler = ()=>{
+            const doesShow = this.state.showPersons;
+            this.setState({showPersons: !doesShow});
+            }
 
-  render() {
+          render() {
   
-     const style={
-       backgroundColor:'white',
-       font:'inherit',
-       border:'1px solid blue',
-       padding:'8px',
-       cursor: 'pointer'
+                          const style={
+                            backgroundColor:'green',
+                            color:'white',
+                            font:'inherit',
+                            border:'1px solid blue',
+                            padding:'8px',
+                            cursor: 'pointer',
+                            ':hover':{
+                              backgroundColor:'lightgreen',
+                              color:'black'
+                            }
 
-     };
+                          };
 
-let persons= null;
+                      let persons= null;
+                          
+                      if (this.state.showPersons){
+                        persons=(
+                          <div>
+                            {this.state.persons.map((person, index) => {
+                              return <Person
+                                  click ={()=>this.deletePersonHandler(index)}
+                                  name={person.name}
+                                  age={person.age}
+                                  key={person.id}
+                                  changed ={(event)=> this.nameChangedHandler(event,person.id)}
+                                  />
+                            })}
+                          </div> 
 
-if (this.state.showPersons){
-  persons=(
-    <div>
-      {this.state.persons.map((person, index) => {
-        return <Person
-            click ={()=>this.deletePersonHandler(index)}
-            name={person.name}
-            age={person.age}
-            key={person.id}
-            changed ={(event)=> this.nameChangedHandler(event,person.id)}
-            />
-      })}
-    </div> 
+                        )
+                        style.backgroundColor= 'red';
+                        style[':hover'] = {
+                          backgroundColor: 'salmon',
+                          color:'black'
+                        }
+                      }
 
-  )
+                     // let classes = ['red','bold'].join(' ');
+                      let classes=[]; // we use classes.join(' ') in the clssname as now it needs to be a string 
+
+                      if(this.state.persons.length <=2){
+                         classes.push('red');
+                      }  
+                      if (this.state.persons.length <=1){
+                        classes.push('bold');
+                      }
+
+
+                          return (
+                            <StyleRoot>
+                            <div className="App">
+                            <h1>Hi, I'm a react App</h1>
+                            <p className={classes.join(' ')}> I see me there!</p>
+                                  {/* <button onClick={this.switchNameHandler.bind(this,'Maxmillian')}> Switch Name</button>*/  }
+                                  { /*the below method is a bit inefficient and above bind method is recommended */}
+                                    <button
+                                    style={style}
+                                    onClick={this.togglePersonsHandler}> Switch Name</button>
+                                    {persons}
+                          </div></StyleRoot>
+                            
+                              );
+                 }
 }
 
-
-    return (
-      <div className="App">
-      <h1>Hi, I'm a react App</h1>
-      <p> I see me there!</p>
-    {/* <button onClick={this.switchNameHandler.bind(this,'Maxmillian')}> Switch Name</button>*/  }
-     { /*the below method is a bit inefficient and above bind method is recommended */}
-      <button
-      style={style}
-      onClick={this.togglePersonsHandler}> Switch Name</button>
-      {persons}
-     
-  </div>
-      
-        );
-  }
-}
-
-export default App;
+export default  Radium(App);
