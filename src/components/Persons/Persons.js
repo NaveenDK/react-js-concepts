@@ -2,8 +2,33 @@ import React ,{Component }from 'react';
 import Person from './Person/Person';
 
 class Persons extends Component{ 
+    constructor(props) {
+        super(props);
+        console.log('[Persons.js] Inside Constructor',props);
+
+    }
+
+    componentWillMount(){
+        console.log('Persons.js Inside componentWillMount()');
+    }
+  
+    componentDidMount()
+    {
+        console.log('Personsjs Inside componentDidMount()');
+    }
+
+    componentWillReceiveProps(nextProps)
+    {
+        console.log('[UPDATE persons.js] inside componentwillReceiveProps ',nextProps)
+    }
+     
+    shouldComponentUpdate(nextProps,nextState){
+        console.log('UPDATE persons.js inside shouldcomponent ',nextProps,nextState)
+        return false;
+    }
 
 render (){
+    console.log('Personsjs inside render()');
  return this.props.persons.map((person, index) => {
         return  <Person
             click ={()=>this.props.clicked(index)}

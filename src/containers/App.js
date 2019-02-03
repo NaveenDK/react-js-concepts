@@ -15,6 +15,22 @@ class App extends Component {
     showPersons :false
 
   }
+  constructor(props) {
+    super(props);
+    console.log('[App.js] Inside Constructor',props);
+
+}
+
+componentWillMount(){
+    console.log('Appjs Inside componentWillMount()');
+}
+
+componentDidMount()
+{
+    console.log('Appjs Inside componentDidMount()');
+}
+
+
  deletePersonHandler = (personIndex) =>{
  //EVEN THOUGH below line does the job - in JS objects, arrays are reference type therefore after
  //this line 'persons' can be mutated so its better to use the line which is 'const persons = this.state.persons.splice();//
@@ -56,7 +72,7 @@ nameChangedHandler = (event,id )=>{
             }
 
           render() {
-  
+  console.log('App js inside render')
 
                       let persons= null;
                       const btnClass='';
