@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import classes from './App.css';
 
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
-class App extends Component {
+class App extends PureComponent {
   state ={
     persons:[
       {id: '123', name: 'Max', age: 28},
@@ -29,6 +29,20 @@ componentDidMount()
 {
     console.log('Appjs Inside componentDidMount()');
 }
+//shouldComponentUpdate(nextProps,nextState){
+ /// console.log('UPDATE Apps.js inside shouldcomponent ',nextProps,nextState)
+  //return false;
+ // return true;
+//}
+
+componentWillUpdate(nextProps,nextState){
+  console.log('Update App.js inside componentwillupdate',nextProps,nextState);
+}
+
+componentDidUpdate (){
+  console.log('Update App.js inside componentDidupdate ');
+}
+
 
 
  deletePersonHandler = (personIndex) =>{
@@ -98,6 +112,7 @@ nameChangedHandler = (event,id )=>{
                           return (
                             
                             <div className={classes.App}>
+                            <button onClick={()=>{this.setState({showPersons:true})}}>Show Persons</button>
                             <Cockpit showPersons = {this.state.showPersons} 
                             persons ={this.state.persons}
                             clicked={this.togglePersonsHandler}
