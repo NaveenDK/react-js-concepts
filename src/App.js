@@ -57,18 +57,9 @@ nameChangedHandler = (event,id )=>{
 
           render() {
   
-                          const style={
-                            backgroundColor:'green',
-                            color:'white',
-                            font:'inherit',
-                            border:'1px solid blue',
-                            padding:'8px',
-                            cursor: 'pointer',
-                            
-
-                          };
 
                       let persons= null;
+                      let btnClass='';
                           
                       if (this.state.showPersons){
                         persons=(
@@ -85,8 +76,8 @@ nameChangedHandler = (event,id )=>{
                           </div> 
 
                         )
-                        style.backgroundColor= 'red';
                       
+                         btnClass=classes.Red;
                       }
 
                      // let classes = ['red','bold'].join(' ');
@@ -107,8 +98,9 @@ nameChangedHandler = (event,id )=>{
                             <p className={assignedClasses.join(' ')}> I see me there!</p>
                                   {/* <button onClick={this.switchNameHandler.bind(this,'Maxmillian')}> Switch Name</button>*/  }
                                   { /*the below method is a bit inefficient and above bind method is recommended */}
-                                    <button
-                                    style={style}
+                                    <button 
+                                    className={btnClass}
+                                    
                                     onClick={this.togglePersonsHandler}> Switch Name</button>
                                     {persons}
                           </div>
