@@ -85,6 +85,7 @@ nameChangedHandler = (event,id )=>{
                             <Cockpit showPersons = {this.state.showPersons} 
                             persons ={this.state.persons}
                             clicked={this.togglePersonsHandler}
+                            apptitle={this.props.title}
                             
                             />
                                     {persons}

@@ -17,7 +17,7 @@ const cockpit = (props) => {
     }
     return (
               <div>
-                     <h1>Hi, I'm a react App</h1>
+                     <h1>{props.apptitle}</h1>
                         <p className={classes.Cockpit}> I see me there!</p>
                                   {/* <button onClick={this.switchNameHandler.bind(this,'Maxmillian')}> Switch Name</button>*/  }
                                   { /*the below method is a bit inefficient and above bind method is recommended */}
