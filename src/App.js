@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 
 import Person from './Person/Person';
 import person from './Person/Person';
@@ -90,21 +90,21 @@ nameChangedHandler = (event,id )=>{
                       }
 
                      // let classes = ['red','bold'].join(' ');
-                      let classes=[]; // we use classes.join(' ') in the clssname as now it needs to be a string 
+                      let assignedClasses=[]; // we use classes.join(' ') in the clssname as now it needs to be a string 
 
                       if(this.state.persons.length <=2){
-                         classes.push('red');
+                         assignedClasses.push(classes.red);
                       }  
                       if (this.state.persons.length <=1){
-                        classes.push('bold');
+                        assignedClasses.push(classes.bold);
                       }
 
 
                           return (
                             
-                            <div className="App">
+                            <div className={classes.App}>
                             <h1>Hi, I'm a react App</h1>
-                            <p className={classes.join(' ')}> I see me there!</p>
+                            <p className={assignedClasses.join(' ')}> I see me there!</p>
                                   {/* <button onClick={this.switchNameHandler.bind(this,'Maxmillian')}> Switch Name</button>*/  }
                                   { /*the below method is a bit inefficient and above bind method is recommended */}
                                     <button
