@@ -1,19 +1,22 @@
 import React, { PureComponent } from 'react';
+
 import classes from './App.css';
 
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+import Auxiliary from '../hoc/Auxiliary';
+import withClass from '../hoc/withClass';
 
 class App extends PureComponent {
   state ={
     persons:[
-      {id: '123', name: 'Max', age: 28},
+      {id: '123', name: 'Max', age: "28"},
       {id: '124', name:'Manu', age:29},
       {id: '125', name:'Stephanie', age:26}
 
     ],
-    showPersons :false
+    showPersons :false,
+    toggleClicked:0
 
   }
   constructor(props) {
@@ -83,7 +86,14 @@ nameChangedHandler = (event,id )=>{
 
             togglePersonsHandler = ()=>{
             const doesShow = this.state.showPersons;
-            this.setState({showPersons: !doesShow});
+            this.setState((prevState,props)=>{
+              return{
+                showPersons: !doesShow,
+                toggleClicked:prevState.toggleClicked +1
+              }
+              
+            });
+   
             }
 
           render() {
@@ -111,8 +121,8 @@ nameChangedHandler = (event,id )=>{
 
 
                           return (
-                            
-                            <WithClass classes={classes.App}>
+                            <>
+                         
                             <button onClick={()=>{this.setState({showPersons:true})}}>Show Persons</button>
                             <Cockpit showPersons = {this.state.showPersons} 
                             persons ={this.state.persons}
@@ -121,10 +131,10 @@ nameChangedHandler = (event,id )=>{
                             
                             />
                                     {persons}
-                                    </WithClass>
-                            
+             </>
                               );
-                 }
+                
+                            }
 }
 
-export default  App;
+export default  withClass(App,classes.App);
