@@ -1,13 +1,14 @@
 import React from 'react';
 import classes from './Cockpit.css';
+import Auxiliary from '../../hoc/Auxiliary';
 
 const cockpit = (props) => {
     const assignedClasses=[]; // we use classes.join(' ') in the clssname as now it needs to be a string 
   
-   let btnClass='';
+   let btnClass=classes.Button;
 
     if(props.showPersons){
-        btnClass = classes.Red;
+        btnClass = [classes.Button, classes.Red].join(' ');
     }
     if(props.persons.length <=2){
        assignedClasses.push(classes.red);
@@ -16,14 +17,14 @@ const cockpit = (props) => {
       assignedClasses.push(classes.bold);
     }
     return (
-              <div>
+              <Auxiliary>
                      <h1>{props.apptitle}</h1>
                         <p className={classes.Cockpit}> I see me there!</p>
                                   {/* <button onClick={this.switchNameHandler.bind(this,'Maxmillian')}> Switch Name</button>*/  }
                                   { /*the below method is a bit inefficient and above bind method is recommended */}
                          <button  className={btnClass}
                         onClick={props.clicked}> Switch Name</button>
-              </div>
+             </Auxiliary>
 
     );
 }
